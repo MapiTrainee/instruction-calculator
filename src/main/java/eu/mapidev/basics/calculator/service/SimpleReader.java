@@ -19,8 +19,8 @@ public class SimpleReader {
 	this.file = file;
     }
 
-    public List<String> readLines() {
-	List<String> lines = new LinkedList<>();
+    public LinkedList<String> readLines() {
+	LinkedList<String> lines = new LinkedList<>();
 	try (BufferedReader bw = new BufferedReader(new FileReader(file))) {
 	    String line;
 	    while ((line = bw.readLine()) != null) {
