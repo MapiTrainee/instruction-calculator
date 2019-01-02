@@ -13,6 +13,14 @@ public class InstructionParser {
 	this.factory = factory;
     }
 
+    public List<Instruction> parseLines(List<String> lines) {
+	List<Instruction> instructions = new LinkedList<>();
+	for (String line : lines) {
+	    instructions.add(parseLine(line));
+	}
+	return instructions;
+    }
+
     public Instruction parseLine(String line) {
 	String[] tokens = prepareTokens(line);
 	return factory.getInstance(tokens[0].toLowerCase(), new BigDecimal(tokens[1]));
@@ -26,15 +34,7 @@ public class InstructionParser {
 	return tokens;
     }
 
-    public List<Instruction> parseLines(List<String> lines) {
-	List<Instruction> instructions = new LinkedList<>();
-	for (String line : lines) {
-	    instructions.add(parseLine(line));
-	}
-	return instructions;
-    }
-
-    public BigDecimal parseApplyInstruction(String line) {
+    public BigDecimal parseLineForApplyInstruction(String line) {
 	String[] tokens = prepareTokens(line);
 	if ("apply".equalsIgnoreCase(tokens[0])) {
 	    return new BigDecimal(tokens[1]);

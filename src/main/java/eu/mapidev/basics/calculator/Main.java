@@ -1,7 +1,7 @@
 package eu.mapidev.basics.calculator;
 
 import eu.mapidev.basics.calculator.domain.Instruction;
-import eu.mapidev.basics.calculator.service.InstructionFactory;
+import eu.mapidev.basics.calculator.service.InstructionFactoryImpl;
 import eu.mapidev.basics.calculator.service.InstructionParser;
 import eu.mapidev.basics.calculator.service.SimpleReader;
 import java.io.File;
@@ -22,8 +22,8 @@ public class Main {
 	SimpleReader reader = new SimpleReader(new File(args[0]));
 	LinkedList<String> lines = reader.readLines();
 	
-	InstructionParser parser = new InstructionParser(new InstructionFactory());
-	BigDecimal initValue = parser.parseApplyInstruction(lines.getLast());
+	InstructionParser parser = new InstructionParser(new InstructionFactoryImpl());
+	BigDecimal initValue = parser.parseLineForApplyInstruction(lines.getLast());
 	List<Instruction> instructions = parser.parseLines(lines.subList(0, lines.size() - 1));
 	
 	Calculator calculator = new Calculator(initValue);

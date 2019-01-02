@@ -1,9 +1,11 @@
 package eu.mapidev.basics.calculator.service;
 
+import eu.mapidev.basics.calculator.domain.Addition;
 import eu.mapidev.basics.calculator.domain.Instruction;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import org.junit.Test;
@@ -15,13 +17,14 @@ public class InstructionParserTest {
 
     @Before
     public void setUp() {
-	parser = new InstructionParser(new InstructionFactory());
+	parser = new InstructionParser(new InstructionFactoryImpl());
     }
 
     @Test
     public void shouldParseLineOfTextToInstruction() {
 	String inputLine = "add 1";
 	Instruction instruction = parser.parseLine(inputLine);
+	assertThat(instruction, is(instanceOf(Addition.class)));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -46,7 +49,7 @@ public class InstructionParserTest {
     @Test
     public void shouldParseApplyOperationToBigDecimal() {
 	String inputLine = "apply 1";
-	BigDecimal expectedValue = parser.parseApplyInstruction(inputLine);
+	BigDecimal expectedValue = parser.parseLineForApplyInstruction(inputLine);
 	assertThat(expectedValue, is(BigDecimal.ONE));
     }
 

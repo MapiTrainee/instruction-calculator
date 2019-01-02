@@ -7,11 +7,11 @@ import org.junit.Test;
 
 public class InstructionFactoryTest {
 
-    private InstructionFactory factory;
+    private InstructionFactoryImpl factory;
 
     @Before
     public void setUp() {
-	factory = new InstructionFactory();
+	factory = new InstructionFactoryImpl();
     }
 
     @Test
