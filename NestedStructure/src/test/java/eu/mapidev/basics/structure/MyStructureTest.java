@@ -40,12 +40,24 @@ public class MyStructureTest {
 	assertThat(actualNode, is(dummyNode));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionWhenCannotFindByCode() {
+	//when
+	structure.findByCode(null);
+    }
+
     @Test
     public void shouldBeAbleToFindByRendererWhenItUsesDummyRenderer() {
 	//when
 	INode actualNode = structure.findByRenderer(DUMMY_RENDERER);
 	//then
 	assertThat(actualNode, is(dummyNode));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionWhenCannotFindByRender() {
+	//when
+	structure.findByRenderer(null);
     }
 
     @Test
