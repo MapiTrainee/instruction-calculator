@@ -7,3 +7,4 @@ All examples are independent!
 * [InstructionCalculator](https://github.com/MapiTrainee/simple-java-tasks/tree/master/InstructionCalculator)
 * [NestedStructure](https://github.com/MapiTrainee/simple-java-tasks/tree/master/NestedStructure)
 * [CyclicNumber](https://github.com/MapiTrainee/simple-java-tasks/tree/master/CyclicNumber)
+* [MissingValue](https://github.com/MapiTrainee/simple-java-tasks/tree/master/MissingValue)
