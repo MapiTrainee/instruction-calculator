@@ -22,15 +22,15 @@ public class MissingValueFinder {
     }
 
     public static int memoryGreedyFindMissing(int... numbers) {
-	boolean[] existedNumbers = new boolean[numbers.length + 1];
+	boolean[] existingNumbers = new boolean[numbers.length + 1];
 
 	for (int number : numbers) {
-	    existedNumbers[number] = true;
+	    existingNumbers[number] = true;
 	}
 
 	int missingValue;
-	for (missingValue = 0; missingValue < existedNumbers.length; missingValue++) {
-	    if (!existedNumbers[missingValue]) {
+	for (missingValue = 0; missingValue < existingNumbers.length; missingValue++) {
+	    if (!existingNumbers[missingValue]) {
 		return missingValue;
 	    }
 	}
