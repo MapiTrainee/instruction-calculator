@@ -50,4 +50,14 @@ public class MissingValueFinder {
 	return missingValue;
     }
 
+    public static int arithmeticFindMissing(int... numbers) {
+	int inputNumbersSum = 0;
+	for (int number : numbers) {
+	    inputNumbersSum += number;
+	}
+
+	int arithmeticSequenceSum = numbers.length * (numbers.length + 1) / 2;
+	return arithmeticSequenceSum - inputNumbersSum;
+    }
+
 }

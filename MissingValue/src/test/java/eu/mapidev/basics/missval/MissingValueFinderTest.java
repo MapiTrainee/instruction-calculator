@@ -1,5 +1,6 @@
 package eu.mapidev.basics.missval;
 
+import static eu.mapidev.basics.missval.MissingValueFinder.arithmeticFindMissing;
 import static eu.mapidev.basics.missval.MissingValueFinder.memoryGreedyFindMissing;
 import static eu.mapidev.basics.missval.MissingValueFinder.naiveFindMissing;
 import static eu.mapidev.basics.missval.MissingValueFinder.sortedNaiveFindMissing;
@@ -68,6 +69,7 @@ public class MissingValueFinderTest {
 	int[] sampleArray = {0, 2, 3, 4};
 	assertThat(memoryGreedyFindMissing(sampleArray), equalTo(1));
     }
+    
     @Test
     public void shouldFindMissingValueForEmptyArraySortedNaive() {
 	int[] emptyArray = new int[0];
@@ -96,6 +98,36 @@ public class MissingValueFinderTest {
     public void shouldFindMissingValueInASampleArraySortedNaive() {
 	int[] sampleArray = {0, 2, 3, 4};
 	assertThat(sortedNaiveFindMissing(sampleArray), equalTo(1));
+    }
+    
+    @Test
+    public void shouldFindMissingValueForEmptyArrayArithmetic() {
+	int[] emptyArray = new int[0];
+	assertThat(arithmeticFindMissing(emptyArray), equalTo(0));
+    }
+
+    @Test
+    public void shouldFindMissingValneueForOneElementArrayArithmetic() {
+	assertThat(arithmeticFindMissing(1), equalTo(0));
+	assertThat(arithmeticFindMissing(0), equalTo(1));
+    }
+
+    @Test
+    public void shouldFindMissingValueIfItsFirstElementInArrayArithmetic() {
+	int[] firstMissingElementArray = {3, 4, 2, 1};
+	assertThat(arithmeticFindMissing(firstMissingElementArray), equalTo(0));
+    }
+
+    @Test
+    public void shouldFindMissingValueIfItsTheLastElementInArrayArithmetic() {
+	int[] lastMissingElementArray = {0, 2, 3, 4, 1};
+	assertThat(arithmeticFindMissing(lastMissingElementArray), equalTo(5));
+    }
+
+    @Test
+    public void shouldFindMissingValueInASampleArrayArithmetic() {
+	int[] sampleArray = {0, 2, 3, 4};
+	assertThat(arithmeticFindMissing(sampleArray), equalTo(1));
     }
 
 }
