@@ -1,5 +1,7 @@
 package eu.mapidev.basics.missval;
 
+import java.util.Arrays;
+
 public class MissingValueFinder {
 
     public static int naiveFindMissing(int... numbers) {
@@ -31,6 +33,17 @@ public class MissingValueFinder {
 	int missingValue;
 	for (missingValue = 0; missingValue < existingNumbers.length; missingValue++) {
 	    if (!existingNumbers[missingValue]) {
+		return missingValue;
+	    }
+	}
+	return missingValue;
+    }
+
+    public static int sortedNaiveFindMissing(int... numbers) {
+	Arrays.sort(numbers);
+	int missingValue;
+	for (missingValue = 0; missingValue < numbers.length; missingValue++) {
+	    if (numbers[missingValue] != missingValue) {
 		return missingValue;
 	    }
 	}
