@@ -39,7 +39,22 @@ public class SimpleLinkedList<T> implements List<T> {
 
     @Override
     public Iterator<T> iterator() {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	return new Iterator<T>() {
+
+	    private Node<T> current = root;
+
+	    @Override
+	    public boolean hasNext() {
+		return current != null;
+	    }
+
+	    @Override
+	    public T next() {
+		T value = current.value;
+		current = current.next;
+		return value;
+	    }
+	};
     }
 
     @Override

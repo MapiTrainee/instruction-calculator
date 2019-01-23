@@ -1,9 +1,12 @@
 package eu.mapidev.basics.list;
 
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
+import org.hamcrest.Matchers;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 import org.junit.Test;
@@ -51,6 +54,23 @@ public class SimpleLinkedListTest {
 	assertThat(list.size(), equalTo(3));
     }
 
+    @Test
+    public void shouldAllowToIterateThroughEachElementOfList() {
+	//given
+	SimpleLinkedList<String> list = new SimpleLinkedList<>();
+	list.add("First");
+	list.add("Second");
+	list.add("Third");
+
+	Iterator<String> it = list.iterator();
+	assertThat(it.next(), is("First"));
+	assertThat(it.next(), is("Second"));
+	assertThat(it.next(), is("Third"));
+	for (String element : list) {
+	    assertThat(element, Matchers.isIn(Arrays.asList("First", "Second", "Third")));
+	}
+    }
+
     /**
      * LEARNING TESTS
      */
@@ -62,6 +82,15 @@ public class SimpleLinkedListTest {
 	assertThat(list.add(null), is(true));
 	assertThat(list.isEmpty(), is(false));
 	assertThat(list.size(), equalTo(3));
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void originalLinkedListThrowExceptionWhenTryToGetElementWithNotExistingIndex() {
+	List<String> list = new LinkedList<>();
+	list.add("Fist");
+	list.add("Second");
+	list.add("Third");
+	list.get(10);
     }
 
 }
