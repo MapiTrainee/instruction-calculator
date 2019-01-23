@@ -8,3 +8,4 @@ All examples are independent!
 * [NestedStructure](https://github.com/MapiTrainee/simple-java-tasks/tree/master/NestedStructure)
 * [CyclicNumber](https://github.com/MapiTrainee/simple-java-tasks/tree/master/CyclicNumber)
 * [MissingValue](https://github.com/MapiTrainee/simple-java-tasks/tree/master/MissingValue)
+* [SimpleLinkedList](https://github.com/MapiTrainee/simple-java-tasks/tree/master/SimpleLinkedList)
