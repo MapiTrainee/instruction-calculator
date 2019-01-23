@@ -2,6 +2,7 @@ package eu.mapidev.basics.list;
 
 import java.util.List;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 import org.junit.Test;
@@ -21,6 +22,12 @@ public class SimpleLinkedListTest {
     public void emptyListShouldHaveZeroSize() {
 	SimpleLinkedList<String> emptyList = new SimpleLinkedList<String>();
 	assertThat(emptyList.size(), equalTo(0));
+    }
+
+    @Test
+    public void emptyListShouldReturnIsEmptyEqualTrue() {
+	SimpleLinkedList<String> emptyList = new SimpleLinkedList<>();
+	assertThat(emptyList.isEmpty(), is(true));
     }
 
 }

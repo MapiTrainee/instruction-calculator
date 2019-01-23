@@ -16,7 +16,7 @@ public class SimpleLinkedList<T> implements List<T> {
 
     @Override
     public boolean isEmpty() {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	return size == 0;
     }
 
     @Override
