@@ -7,9 +7,11 @@ import java.util.ListIterator;
 
 public class SimpleLinkedList<T> implements List<T> {
 
+    private int size = 0;
+
     @Override
     public int size() {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	return size;
     }
 
     @Override

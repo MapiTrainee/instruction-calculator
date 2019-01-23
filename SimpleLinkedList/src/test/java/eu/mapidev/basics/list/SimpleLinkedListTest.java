@@ -1,25 +1,26 @@
 package eu.mapidev.basics.list;
 
+import java.util.List;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
-import org.junit.Before;
 import org.junit.Test;
 
 public class SimpleLinkedListTest {
 
-    private SimpleLinkedList<Object> numbers;
-    private SimpleLinkedList<Object> names;
+    @Test
+    public void shouldAllowToCreateAnEmptySimpleLinkedListForIntegersAndStrings() {
+	List<String> names = new SimpleLinkedList<>();
+	List<Integer> numbers = new SimpleLinkedList<>();
 
-    @Before
-    public void setUp() {
-	names = new SimpleLinkedList<>();
-	numbers = new SimpleLinkedList<>();
+	assertThat(names, notNullValue());
+	assertThat(numbers, notNullValue());
     }
 
     @Test
-    public void shouldAllowToCreateSimpleLinkedListWithIntegersAndStrings() {
-	assertThat(names, notNullValue());
-	assertThat(numbers, notNullValue());
+    public void emptyListShouldHaveZeroSize() {
+	SimpleLinkedList<String> emptyList = new SimpleLinkedList<String>();
+	assertThat(emptyList.size(), equalTo(0));
     }
 
 }
