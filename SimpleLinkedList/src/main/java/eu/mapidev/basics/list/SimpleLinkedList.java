@@ -123,7 +123,18 @@ public class SimpleLinkedList<T> implements List<T> {
 
     @Override
     public T get(int index) {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	int iteratorIndex = 0;
+	Iterator<T> it = iterator();
+
+	while (it.hasNext()) {
+	    T currentElement = it.next();
+	    if (iteratorIndex == index) {
+		return currentElement;
+	    }
+	    iteratorIndex++;
+	}
+
+	throw new IndexOutOfBoundsException("Input index must be in range of [0, size-1]");
     }
 
     @Override

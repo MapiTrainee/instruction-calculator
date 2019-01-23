@@ -45,7 +45,7 @@ public class SimpleLinkedListTest {
     }
 
     @Test
-    public void shouldAllowAddNulls() {
+    public void shouldAllowToAddNulls() {
 	SimpleLinkedList<Object> list = new SimpleLinkedList<>();
 	assertThat(list.add(null), is(true));
 	assertThat(list.add(null), is(true));
@@ -81,11 +81,28 @@ public class SimpleLinkedListTest {
 	assertThat(list.contains("Fourth"), is(false));
     }
 
+    @Test
+    public void shouldAllowToGetElementByCorrectIndex() {
+	SimpleLinkedList<String> list = new SimpleLinkedList<>();
+	list.add("First");
+	list.add("Second");
+	list.add("Third");
+
+	assertThat(list.get(0), is("First"));
+	assertThat(list.get(2), is("Third"));
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void shouldThrowExceptionWhenTryToGetElementByNotExistingIndex() {
+	SimpleLinkedList<String> emptyList = new SimpleLinkedList<>();
+	emptyList.get(2);
+    }
+
     /**
      * LEARNING TESTS
      */
     @Test
-    public void originalLinkedListShouldAllowAddNulls() {
+    public void originalLinkedListShouldAllowToAddNulls() {
 	LinkedList<String> list = new LinkedList<>();
 	assertThat(list.add(null), is(true));
 	assertThat(list.add(null), is(true));
