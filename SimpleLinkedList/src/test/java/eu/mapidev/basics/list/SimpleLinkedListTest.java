@@ -98,6 +98,17 @@ public class SimpleLinkedListTest {
 	emptyList.get(2);
     }
 
+    @Test
+    public void clearedListShouldBeLikeAnEmptyList() {
+	SimpleLinkedList<String> list = new SimpleLinkedList<>();
+	list.add("First");
+	list.add("Second");
+	list.add("Third");
+	list.clear();
+	assertThat(list.isEmpty(), is(true));
+	assertThat(list.size(), equalTo(0));
+    }
+
     /**
      * LEARNING TESTS
      */

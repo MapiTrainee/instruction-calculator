@@ -118,7 +118,9 @@ public class SimpleLinkedList<T> implements List<T> {
 
     @Override
     public void clear() {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	size = 0;
+	root = null;
+	last = root;
     }
 
     @Override
