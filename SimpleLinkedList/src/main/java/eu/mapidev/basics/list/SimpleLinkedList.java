@@ -7,7 +7,20 @@ import java.util.ListIterator;
 
 public class SimpleLinkedList<T> implements List<T> {
 
+    private Node<T> root = null;
+    private Node<T> last = root;
     private int size = 0;
+
+    private static class Node<T> {
+
+	private T value;
+	private Node<T> next;
+
+	public Node(T value, Node<T> next) {
+	    this.value = value;
+	    this.next = next;
+	}
+    }
 
     @Override
     public int size() {
@@ -40,8 +53,16 @@ public class SimpleLinkedList<T> implements List<T> {
     }
 
     @Override
-    public boolean add(T e) {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean add(T value) {
+	if (isEmpty()) {
+	    root = new Node<T>(value, null);
+	    last = root;
+	} else {
+	    last.next = new Node<>(value, null);
+	    last = last.next;
+	}
+	size++;
+	return true;
     }
 
     @Override
