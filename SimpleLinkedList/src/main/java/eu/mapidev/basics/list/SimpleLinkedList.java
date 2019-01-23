@@ -11,6 +11,14 @@ public class SimpleLinkedList<T> implements List<T> {
     private Node<T> last = root;
     private int size = 0;
 
+    public T getLast() {
+	return last.value;
+    }
+
+    public T getFirst() {
+	return root.value;
+    }
+
     private static class Node<T> {
 
 	private T value;

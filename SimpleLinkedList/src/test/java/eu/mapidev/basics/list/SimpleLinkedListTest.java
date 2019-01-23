@@ -109,26 +109,52 @@ public class SimpleLinkedListTest {
 	assertThat(list.size(), equalTo(0));
     }
 
+    @Test
+    public void shouldAllowToGetFirstAndLastElementOfTheList() {
+	SimpleLinkedList<String> list = new SimpleLinkedList<>();
+	list.add("First");
+	list.add("Second");
+	list.add("Third");
+	assertThat(list.getFirst(), is("First"));
+	assertThat(list.getLast(), is("Third"));
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void emptyLitsShouldThrowExceptionWhenTryToGetFirstOrLast() {
+	SimpleLinkedList<String> emptyList = new SimpleLinkedList<>();
+	emptyList.getFirst();
+    }
+
     /**
      * LEARNING TESTS
      */
     @Test
     public void originalLinkedListShouldAllowToAddNulls() {
-	LinkedList<String> list = new LinkedList<>();
-	assertThat(list.add(null), is(true));
-	assertThat(list.add(null), is(true));
-	assertThat(list.add(null), is(true));
-	assertThat(list.isEmpty(), is(false));
-	assertThat(list.size(), equalTo(3));
+	LinkedList<String> originalList = new LinkedList<>();
+	assertThat(originalList.add(null), is(true));
+	assertThat(originalList.add(null), is(true));
+	assertThat(originalList.add(null), is(true));
+	assertThat(originalList.isEmpty(), is(false));
+	assertThat(originalList.size(), equalTo(3));
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void originalLinkedListShouldThrowExceptionWhenTryToGetElementWithNotExistingIndex() {
-	List<String> list = new LinkedList<>();
-	list.add("Fist");
-	list.add("Second");
-	list.add("Third");
-	list.get(10);
+	List<String> originalList = new LinkedList<>();
+	originalList.add("First");
+	originalList.add("Second");
+	originalList.add("Third");
+	originalList.get(10);
+    }
+
+    @Test
+    public void originalLinkedListShouldAllowToGetFirstAndLastElement() {
+	LinkedList<String> originalList = new LinkedList<>();
+	originalList.add("First");
+	originalList.add("Second");
+	originalList.add("Third");
+	assertThat(originalList.getFirst(), is("First"));
+	assertThat(originalList.getLast(), is("Third"));
     }
 
 }
