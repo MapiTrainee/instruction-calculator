@@ -33,8 +33,14 @@ public class SimpleLinkedList<T> implements List<T> {
     }
 
     @Override
-    public boolean contains(Object o) {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean contains(Object object) {
+	Iterator<T> it = iterator();
+	while (it.hasNext()) {
+	    if (it.next().equals(object)) {
+		return true;
+	    }
+	}
+	return false;
     }
 
     @Override

@@ -56,7 +56,6 @@ public class SimpleLinkedListTest {
 
     @Test
     public void shouldAllowToIterateThroughEachElementOfList() {
-	//given
 	SimpleLinkedList<String> list = new SimpleLinkedList<>();
 	list.add("First");
 	list.add("Second");
@@ -69,6 +68,17 @@ public class SimpleLinkedListTest {
 	for (String element : list) {
 	    assertThat(element, Matchers.isIn(Arrays.asList("First", "Second", "Third")));
 	}
+    }
+
+    @Test
+    public void containsMethodShouldAllowToCheckIfThereIsItemInList() {
+	SimpleLinkedList<String> list = new SimpleLinkedList<>();
+	list.add("First");
+	list.add("Second");
+	list.add("Third");
+
+	assertThat(list.contains("Second"), is(true));
+	assertThat(list.contains("Fourth"), is(false));
     }
 
     /**
@@ -85,7 +95,7 @@ public class SimpleLinkedListTest {
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void originalLinkedListThrowExceptionWhenTryToGetElementWithNotExistingIndex() {
+    public void originalLinkedListShouldThrowExceptionWhenTryToGetElementWithNotExistingIndex() {
 	List<String> list = new LinkedList<>();
 	list.add("Fist");
 	list.add("Second");
