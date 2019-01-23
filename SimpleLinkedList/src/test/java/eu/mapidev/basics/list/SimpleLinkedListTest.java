@@ -7,6 +7,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import org.hamcrest.Matchers;
+import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 import org.junit.Test;
@@ -123,6 +124,46 @@ public class SimpleLinkedListTest {
     public void emptyLitsShouldThrowExceptionWhenTryToGetFirstOrLast() {
 	SimpleLinkedList<String> emptyList = new SimpleLinkedList<>();
 	emptyList.getFirst();
+    }
+
+    @Test
+    public void shouldAllowToRemoveElementsInList() {
+	List<String> list = new SimpleLinkedList<>();
+	list.add("First");
+	list.add("Second");
+	list.add("Third");
+	list.add("Fourth");
+
+	boolean removed = list.remove("Second");
+	assertThat(removed, is(true));
+	assertThat(list.size(), equalTo(3));
+	assertThat(list, contains("First", "Third", "Fourth"));
+
+	removed = list.remove("Fourth");
+	assertThat(removed, is(true));
+	assertThat(list.size(), equalTo(2));
+	assertThat(list, contains("First", "Third"));
+
+	removed = list.remove("First");
+	assertThat(removed, is(true));
+	assertThat(list.size(), equalTo(1));
+	assertThat(list, contains("Third"));
+	
+	removed = list.remove("Third");
+	assertThat(removed, is(true));
+	assertThat(list.size(), equalTo(0));
+    }
+
+    @Test
+    public void shouldGetRemovedEqualToFalseWhenTryToRemoveNotExistingElement() {
+	List<String> list = new SimpleLinkedList<>();
+	list.add("First");
+	list.add("Second");
+	list.add("Third");
+	boolean removed = list.remove("Fifth");
+	assertThat(removed, is(false));
+	assertThat(list.size(), equalTo(3));
+	assertThat(list, contains("First", "Second", "Third"));
     }
 
     /**

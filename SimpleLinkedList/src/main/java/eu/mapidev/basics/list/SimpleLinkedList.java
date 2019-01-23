@@ -55,18 +55,37 @@ public class SimpleLinkedList<T> implements List<T> {
     public Iterator<T> iterator() {
 	return new Iterator<T>() {
 
-	    private Node<T> current = root;
+	    private Node<T> next = root;
+	    private Node<T> current = null;
+	    private Node<T> previous = null;
 
 	    @Override
 	    public boolean hasNext() {
-		return current != null;
+		return next != null;
 	    }
 
 	    @Override
 	    public T next() {
-		T value = current.value;
-		current = current.next;
-		return value;
+		previous = current;
+		current = next;
+		next = current.next;
+		return current.value;
+	    }
+
+	    @Override
+	    public void remove() {
+		if (root.equals(current) && last.equals(root)) {
+		    root = null;
+		    last = root;
+		} else if (root.equals(current)) {
+		    root = next;
+		} else if (last.equals(current)) {
+		    previous.next = null;
+		    last = previous;
+		} else {
+		    previous.next = next;
+		}
+		size--;
 	    }
 	};
     }
@@ -95,8 +114,15 @@ public class SimpleLinkedList<T> implements List<T> {
     }
 
     @Override
-    public boolean remove(Object o) {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean remove(Object object) {
+	Iterator it = iterator();
+	while (it.hasNext()) {
+	    if (it.next().equals(object)) {
+		it.remove();
+		return true;
+	    }
+	}
+	return false;
     }
 
     @Override
