@@ -9,3 +9,4 @@ All examples are independent!
 * [CyclicNumber](https://github.com/MapiTrainee/simple-java-tasks/tree/master/CyclicNumber)
 * [MissingValue](https://github.com/MapiTrainee/simple-java-tasks/tree/master/MissingValue)
 * [SimpleLinkedList](https://github.com/MapiTrainee/simple-java-tasks/tree/master/SimpleLinkedList)
+* [CaesarCipher](https://github.com/MapiTrainee/simple-java-tasks/tree/master/CaesarCipher)
