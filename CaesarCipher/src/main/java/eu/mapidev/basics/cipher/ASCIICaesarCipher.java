@@ -2,48 +2,63 @@ package eu.mapidev.basics.cipher;
 
 public class ASCIICaesarCipher implements CaesarCipher {
 
+    private CharacterLimit limit = CharacterLimit.UPPERCASE;
+
     @Override
     public String encrypt(String plaintext, int key) {
 	key = key % 26;
-	char[] input = plaintext.toCharArray();
-	for (int i = 0; i < input.length; i++) {
-	    boolean isLowerCases = false;
-	    if (Character.isLowerCase(input[i])) {
-		isLowerCases = true;
-		input[i] = Character.toUpperCase(input[i]);
-	    }
-	    char encoded;
-	    if ((input[i] + key) > 90) {
-		int shift = input[i] + key - 90;
-		encoded = (char) (64 + shift);
-	    } else {
-		encoded = (char) (input[i] + key);
-	    }
-	    input[i] = isLowerCases ? Character.toLowerCase(encoded) : encoded;
+	char[] letters = plaintext.toCharArray();
+	for (int letterIndex = 0; letterIndex < letters.length; letterIndex++) {
+	    applyLimitsByLetterCase(letters[letterIndex]);
+	    letters[letterIndex] = getShiftedLetter(letters[letterIndex], key);
 	}
-	return new String(input);
+	return new String(letters);
+    }
+
+    private char getShiftedLetter(int letterCode, int key) {
+	if ((letterCode + key) > limit.upper) {
+	    int over = (letterCode + key) - limit.upper;
+	    return (char) (limit.lower - 1 + over);
+	} else if ((letterCode + key) < limit.lower) {
+	    int under = limit.lower - (letterCode + key);
+	    return (char) (limit.upper + 1 - under);
+	} else {
+	    return (char) (letterCode + key);
+	}
     }
 
     @Override
     public String decrypt(String secret, int key) {
-	key = key % 26;
-	char[] input = secret.toCharArray();
-	for (int i = 0; i < input.length; i++) {
-	    boolean isLowerCases = false;
-	    if (Character.isLowerCase(input[i])) {
-		isLowerCases = true;
-		input[i] = Character.toUpperCase(input[i]);
-	    }
-	    char encoded;
-	    if ((input[i] - key) < 65) {
-		int shift = 64 - (input[i] - key);
-		encoded = (char) (90 - shift);
-	    } else {
-		encoded = (char) (input[i] - key);
-	    }
-	    input[i] = isLowerCases ? Character.toLowerCase(encoded) : encoded;
+	return encrypt(secret, -key);
+    }
+
+    private void applyLimitsByLetterCase(char letter) {
+	if (Character.isLowerCase(letter)) {
+	    limit = CharacterLimit.LOWERCASE;
+	} else {
+	    limit = CharacterLimit.UPPERCASE;
 	}
-	return new String(input);
+    }
+
+    private enum CharacterLimit {
+	LOWERCASE(97, 122),
+	UPPERCASE(65, 90);
+
+	private int lower;
+	private int upper;
+
+	private CharacterLimit(int lower, int upper) {
+	    this.lower = lower;
+	    this.upper = upper;
+	}
+
+	public int getLower() {
+	    return lower;
+	}
+
+	public int getUpper() {
+	    return upper;
+	}
     }
 
 }
