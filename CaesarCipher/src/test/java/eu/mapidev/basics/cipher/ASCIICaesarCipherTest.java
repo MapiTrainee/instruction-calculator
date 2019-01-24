@@ -1,7 +1,6 @@
 package eu.mapidev.basics.cipher;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.collection.IsArrayContainingInOrder.arrayContaining;
 import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
@@ -77,6 +76,22 @@ public class ASCIICaesarCipherTest {
 	int key = 28;
 	String plaintext = caesarCipher.decrypt(secret, key);
 	assertThat(plaintext, is("ABCabc"));
+    }
+
+    @Test
+    public void shouldEncryptBCDbcdToABCabcWhenKeyIsMinus1() {
+	String secret = "BCDbcd";
+	int key = -1;
+	String plaintext = caesarCipher.encrypt(secret, key);
+	assertThat(plaintext, is("ABCabc"));
+    }
+
+    @Test
+    public void shouldDecryptABCabcToBCDbcdWhenKeyIsMinus1() {
+	String secret = "ABCabc";
+	int key = -1;
+	String plaintext = caesarCipher.decrypt(secret, key);
+	assertThat(plaintext, is("BCDbcd"));
     }
 
 }
