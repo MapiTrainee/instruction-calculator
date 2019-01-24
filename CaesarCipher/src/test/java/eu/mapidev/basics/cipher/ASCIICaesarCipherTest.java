@@ -47,4 +47,36 @@ public class ASCIICaesarCipherTest {
 	assertThat(secret, is("CDEcde"));
     }
 
+    @Test
+    public void shouldNotDecryptWhenKeyIs0() {
+	String secret = "ABCabc";
+	int key = 0;
+	String plaintext = caesarCipher.decrypt(secret, key);
+	assertThat(plaintext, is(secret));
+    }
+
+    @Test
+    public void shouldDecryptBCDbcdToABCabcWhenKeyIs1() {
+	String secret = "BCDbcd";
+	int key = 1;
+	String plaintext = caesarCipher.decrypt(secret, key);
+	assertThat(plaintext, is("ABCabc"));
+    }
+
+    @Test
+    public void shouldDecryptZABzabToABCabcWhenKeyIs25() {
+	String secret = "ZABzab";
+	int key = 25;
+	String plaintext = caesarCipher.decrypt(secret, key);
+	assertThat(plaintext, is("ABCabc"));
+    }
+
+    @Test
+    public void shouldDecryptCDEcdeToABCabcWhenKeyIs28() {
+	String secret = "CDEcde";
+	int key = 28;
+	String plaintext = caesarCipher.decrypt(secret, key);
+	assertThat(plaintext, is("ABCabc"));
+    }
+
 }
