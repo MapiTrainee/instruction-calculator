@@ -2,7 +2,7 @@ package eu.mapidev.basics.gcf;
 
 import java.util.function.BinaryOperator;
 
-public class GreatestCommonFactor {
+public class DivisionBasedGreatestCommonFactor {
 
     public static BinaryOperator<Integer> iterativeFinder() {
 	return (a, b) -> {

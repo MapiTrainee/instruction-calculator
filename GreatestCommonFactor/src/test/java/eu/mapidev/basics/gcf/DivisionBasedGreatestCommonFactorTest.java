@@ -14,7 +14,7 @@ import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(Parameterized.class)
-public class GreatestCommonFactorTest {
+public class DivisionBasedGreatestCommonFactorTest {
 
     @Parameter(0)
     public Integer inputA;
@@ -53,7 +53,7 @@ public class GreatestCommonFactorTest {
 	if (expectedException != null) {
 	    thrown.expect(expectedException);
 	}
-	BinaryOperator<Integer> finder = GreatestCommonFactor.iterativeFinder();
+	BinaryOperator<Integer> finder = DivisionBasedGreatestCommonFactor.iterativeFinder();
 	assertThat(finder.apply(inputA, inputB), equalTo(expectedFactor));
     }
 
@@ -62,7 +62,7 @@ public class GreatestCommonFactorTest {
 	if (expectedException != null) {
 	    thrown.expect(expectedException);
 	}
-	BinaryOperator<Integer> finder = GreatestCommonFactor.recursiveFinder();
+	BinaryOperator<Integer> finder = DivisionBasedGreatestCommonFactor.recursiveFinder();
 	assertThat(finder.apply(inputA, inputB), equalTo(expectedFactor));
     }
 
