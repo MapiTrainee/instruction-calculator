@@ -10,3 +10,4 @@ All examples are independent!
 * [MissingValue](https://github.com/MapiTrainee/simple-java-tasks/tree/master/MissingValue)
 * [SimpleLinkedList](https://github.com/MapiTrainee/simple-java-tasks/tree/master/SimpleLinkedList)
 * [CaesarCipher](https://github.com/MapiTrainee/simple-java-tasks/tree/master/CaesarCipher)
+* [GreatestCommonFactor](https://github.com/MapiTrainee/simple-java-tasks/tree/master/GreatestCommonFactor)
