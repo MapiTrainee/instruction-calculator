@@ -18,8 +18,8 @@ public class GreatestCommonFactor {
     }
 
     private static void validateInputValues(Integer a, Integer b) throws IllegalArgumentException {
-	if (a < 0 || b <= 0 || a == null || b == null) {
-	    throw new IllegalArgumentException("Input numbers cannot be negative or null!");
+	if (a == null || b == null || a <= 0 || b <= 0) {
+	    throw new IllegalArgumentException("Input numbers must be positive and not null!");
 	}
     }
 
@@ -27,12 +27,11 @@ public class GreatestCommonFactor {
 	return new BinaryOperator<Integer>() {
 
 	    private int r;
-	    
+
 	    @Override
 	    public Integer apply(Integer a, Integer b) {
 		validateInputValues(a, b);
-		
-		return find(a,b);
+		return find(a, b);
 	    }
 
 	    public Integer find(Integer a, Integer b) {
