@@ -2,9 +2,9 @@ package eu.mapidev.basics.gcf;
 
 import java.util.function.BinaryOperator;
 
-public class DivisionBasedGreatestCommonFactor {
+public class DivisionBasedGreatestCommonFactor extends GreatestCommonFactor {
 
-    public static BinaryOperator<Integer> iterativeFinder() {
+    public BinaryOperator<Integer> iterativeFinder() {
 	return (a, b) -> {
 	    validateInputValues(a, b);
 
@@ -17,13 +17,7 @@ public class DivisionBasedGreatestCommonFactor {
 	};
     }
 
-    private static void validateInputValues(Integer a, Integer b) throws IllegalArgumentException {
-	if (a == null || b == null || a <= 0 || b <= 0) {
-	    throw new IllegalArgumentException("Input numbers must be positive and not null!");
-	}
-    }
-
-    public static BinaryOperator<Integer> recursiveFinder() {
+    public BinaryOperator<Integer> recursiveFinder() {
 	return new BinaryOperator<Integer>() {
 
 	    private int r;

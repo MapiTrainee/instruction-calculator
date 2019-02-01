@@ -49,7 +49,8 @@ public class ExtendedEuclideanGreatestCommonFactorTest {
 	if (expectedException != null) {
 	    thrown.expect(expectedException);
 	}
-	BiFunction<Integer, Integer, Integer[]> finder = ExtendedEuclideanGreatestCommonFactor.recursiveFinder();
+	ExtendedEuclideanGreatestCommonFactor egcf = new ExtendedEuclideanGreatestCommonFactor();
+	BiFunction<Integer, Integer, Integer[]> finder = egcf.recursiveExtendedFinder();
 	assertThat(finder.apply(inputA, inputB), arrayContaining(expectedCoefficients));
     }
 
@@ -58,7 +59,8 @@ public class ExtendedEuclideanGreatestCommonFactorTest {
 	if (expectedException != null) {
 	    thrown.expect(expectedException);
 	}
-	BiFunction<Integer, Integer, Integer[]> finder = ExtendedEuclideanGreatestCommonFactor.iterativeFinder();
+	ExtendedEuclideanGreatestCommonFactor egcf = new ExtendedEuclideanGreatestCommonFactor();
+	BiFunction<Integer, Integer, Integer[]> finder = egcf.iterativeExtendedFinder();
 	assertThat(finder.apply(inputA, inputB), arrayContaining(expectedCoefficients));
     }
 }

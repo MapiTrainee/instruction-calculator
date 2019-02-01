@@ -53,7 +53,8 @@ public class DivisionBasedGreatestCommonFactorTest {
 	if (expectedException != null) {
 	    thrown.expect(expectedException);
 	}
-	BinaryOperator<Integer> finder = DivisionBasedGreatestCommonFactor.iterativeFinder();
+	GreatestCommonFactor gcf = new DivisionBasedGreatestCommonFactor();
+	BinaryOperator<Integer> finder = gcf.iterativeFinder();
 	assertThat(finder.apply(inputA, inputB), equalTo(expectedFactor));
     }
 
@@ -62,7 +63,8 @@ public class DivisionBasedGreatestCommonFactorTest {
 	if (expectedException != null) {
 	    thrown.expect(expectedException);
 	}
-	BinaryOperator<Integer> finder = DivisionBasedGreatestCommonFactor.recursiveFinder();
+	GreatestCommonFactor gcf = new DivisionBasedGreatestCommonFactor();
+	BinaryOperator<Integer> finder = gcf.recursiveFinder();
 	assertThat(finder.apply(inputA, inputB), equalTo(expectedFactor));
     }
 
