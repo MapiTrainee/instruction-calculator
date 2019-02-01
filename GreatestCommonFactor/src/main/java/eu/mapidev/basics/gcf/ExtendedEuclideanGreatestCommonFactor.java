@@ -6,7 +6,8 @@ public class ExtendedEuclideanGreatestCommonFactor {
 
     public static BiFunction<Integer, Integer, Integer[]> recursiveFinder() {
 	return new BiFunction<Integer, Integer, Integer[]>() {
-	    private Integer[] p = {0, 0};
+	    private Integer[] p;
+	    private Integer q;
 
 	    @Override
 	    public Integer[] apply(Integer a, Integer b) {
@@ -14,7 +15,7 @@ public class ExtendedEuclideanGreatestCommonFactor {
 		    return new Integer[]{1, 0};
 		} else {
 		    p = apply(b, a % b);
-		    Integer q = a / b;
+		    q = a / b;
 		    return new Integer[]{p[1], p[0] - q * p[1]};
 		}
 	    }
@@ -22,7 +23,25 @@ public class ExtendedEuclideanGreatestCommonFactor {
     }
 
     public static BiFunction<Integer, Integer, Integer[]> iterativeFinder() {
-	throw new UnsupportedOperationException("Not implemented yet!");
+	return (a, b) -> {
+	    int prevX = 1, prevY = 0;
+	    int x = 0, y = 1;
+	    int q, r, newX, newY;
+
+	    while (b != 0) {
+		q = a / b;
+		r = a % b;
+		a = b;
+		b = r;
+		newX = prevX - q * x;
+		newY = prevY - q * y;
+		prevX = x;
+		prevY = y;
+		x = newX;
+		y = newY;
+	    }
+	    return new Integer[]{prevX, prevY};
+	};
     }
 
 }

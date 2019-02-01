@@ -16,4 +16,14 @@ public class ExtendedEuclideanGreatestCommonFactorTest {
 	BiFunction<Integer, Integer, Integer[]> finder = ExtendedEuclideanGreatestCommonFactor.recursiveFinder();
 	assertThat(finder.apply(a, b), arrayContaining(expectedCoefficents));
     }
+
+    @Test
+    public void iterativeFinderShouldReturnCorrectCoefficientsForThisExample() {
+	Integer a = 188;
+	Integer b = 12;
+	Integer[] expectedCoefficents = {-1, 16};
+
+	BiFunction<Integer, Integer, Integer[]> finder = ExtendedEuclideanGreatestCommonFactor.iterativeFinder();
+	assertThat(finder.apply(a, b), arrayContaining(expectedCoefficents));
+    }
 }
