@@ -14,7 +14,7 @@ import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(Parameterized.class)
-public class DivisionBasedGreatestCommonFactorTest {
+public class GreatestCommonFactorTest {
 
     @Parameter(0)
     public Integer inputA;
@@ -49,7 +49,7 @@ public class DivisionBasedGreatestCommonFactorTest {
     }
 
     @Test
-    public void iterativeGCFShouldObtainResultsAccordingToData() {
+    public void iterativeDivisionBasedGCFShouldObtainResultsAccordingToData() {
 	if (expectedException != null) {
 	    thrown.expect(expectedException);
 	}
@@ -59,11 +59,31 @@ public class DivisionBasedGreatestCommonFactorTest {
     }
 
     @Test
-    public void recursiveGCFShouldObtainResultsAccordingToData() {
+    public void iterativeSubtractionBasedGCFShouldObtainResultsAccordingToData() {
+	if (expectedException != null) {
+	    thrown.expect(expectedException);
+	}
+	GreatestCommonFactor gcf = new SubtractionBasedGreatestCommonFactor();
+	BinaryOperator<Integer> finder = gcf.iterativeFinder();
+	assertThat(finder.apply(inputA, inputB), equalTo(expectedFactor));
+    }
+
+    @Test
+    public void recursiveDivisionBasedGCFShouldObtainResultsAccordingToData() {
 	if (expectedException != null) {
 	    thrown.expect(expectedException);
 	}
 	GreatestCommonFactor gcf = new DivisionBasedGreatestCommonFactor();
+	BinaryOperator<Integer> finder = gcf.recursiveFinder();
+	assertThat(finder.apply(inputA, inputB), equalTo(expectedFactor));
+    }
+
+    @Test
+    public void recursiveSubtractionBasedGCFShouldObtainResultsAccordingToData() {
+	if (expectedException != null) {
+	    thrown.expect(expectedException);
+	}
+	GreatestCommonFactor gcf = new SubtractionBasedGreatestCommonFactor();
 	BinaryOperator<Integer> finder = gcf.recursiveFinder();
 	assertThat(finder.apply(inputA, inputB), equalTo(expectedFactor));
     }
