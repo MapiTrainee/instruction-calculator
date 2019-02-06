@@ -80,7 +80,8 @@ public class SignalFinder {
 	for (char character : letters) {
 	    if (character > characterMaxValue) {
 		characterMaxValue = character;
-	    } else if (character < characterMinValue) {
+	    }
+	    if (character < characterMinValue) {
 		characterMinValue = character;
 	    }
 	}
