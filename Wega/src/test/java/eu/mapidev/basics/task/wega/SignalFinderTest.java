@@ -30,7 +30,7 @@ public class SignalFinderTest {
 
     @Test
     public void shouldFindTheMessageWithTheLargestNumberOfDifferentCharacters() {
-	String actualMessage = finder.findMessageWithTheLargetstNumberOfDifferentCharacters();
+	String actualMessage = finder.findMessageWithTheLargestNumberOfDifferentCharacters();
 	assertThat(actualMessage.length(), equalTo("AKLMNOPRSTWZA".length()));
 	assertThat(actualMessage, is("AKLMNOPRSTWZA"));
     }

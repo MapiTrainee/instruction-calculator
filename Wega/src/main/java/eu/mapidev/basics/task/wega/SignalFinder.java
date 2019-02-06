@@ -25,20 +25,24 @@ public class SignalFinder {
 	return sb.toString();
     }
 
-    public String findMessageWithTheLargetstNumberOfDifferentCharacters() {
+    public String findMessageWithTheLargestNumberOfDifferentCharacters() {
 	theLargestNumberOfDifferentCharacters = Integer.MIN_VALUE;
 	theMessageWithTheLargestNumberOfDifferentCharacters = null;
 
 	for (String signal : signals) {
-	    Arrays.fill(visitedCharacters, false);
-	    visitAllCharactersOfString(signal);
-	    int visitedCharactersCounter = countVisitedCharacters();
-	    if (visitedCharactersCounter > theLargestNumberOfDifferentCharacters) {
+	    int charactersCounter = countDifferentCharactersOfString(signal);
+	    if (charactersCounter > theLargestNumberOfDifferentCharacters) {
 		theMessageWithTheLargestNumberOfDifferentCharacters = signal;
-		theLargestNumberOfDifferentCharacters = visitedCharactersCounter;
+		theLargestNumberOfDifferentCharacters = charactersCounter;
 	    }
 	}
 	return theMessageWithTheLargestNumberOfDifferentCharacters;
+    }
+
+    public int countDifferentCharactersOfString(String signal) {
+	Arrays.fill(visitedCharacters, false);
+	visitAllCharactersOfString(signal);
+	return countVisitedCharacters();
     }
 
     private int countVisitedCharacters() {
@@ -62,21 +66,24 @@ public class SignalFinder {
 	List<String> messages = new ArrayList<>();
 	for (String signal : signals) {
 	    char[] letters = signal.toCharArray();
-
-	    int characterMinValue = 90;
-	    int characterMaxValue = 65;
-	    for (char character : letters) {
-		if (character > characterMaxValue) {
-		    characterMaxValue = character;
-		} else if (character < characterMinValue) {
-		    characterMinValue = character;
-		}
-	    }
-	    int distance = characterMaxValue - characterMinValue;
+	    int distance = computeMaximumDistanceBetweenCharacters(letters);
 	    if (distance <= limit) {
 		messages.add(signal);
 	    }
 	}
 	return messages;
+    }
+
+    private int computeMaximumDistanceBetweenCharacters(char[] letters) {
+	int characterMinValue = 90;
+	int characterMaxValue = 65;
+	for (char character : letters) {
+	    if (character > characterMaxValue) {
+		characterMaxValue = character;
+	    } else if (character < characterMinValue) {
+		characterMinValue = character;
+	    }
+	}
+	return characterMaxValue - characterMinValue;
     }
 }
