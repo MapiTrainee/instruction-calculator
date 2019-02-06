@@ -30,17 +30,16 @@ public class SignalFinder {
 	theMessageWithTheLargestNumberOfDifferentCharacters = null;
 
 	for (String signal : signals) {
-	    int charactersCounter = countDifferentCharactersOfString(signal);
-	    if (charactersCounter > theLargestNumberOfDifferentCharacters) {
+	    int differentCharactersCounter = countDifferentCharactersOfString(signal);
+	    if (differentCharactersCounter > theLargestNumberOfDifferentCharacters) {
 		theMessageWithTheLargestNumberOfDifferentCharacters = signal;
-		theLargestNumberOfDifferentCharacters = charactersCounter;
+		theLargestNumberOfDifferentCharacters = differentCharactersCounter;
 	    }
 	}
 	return theMessageWithTheLargestNumberOfDifferentCharacters;
     }
 
     public int countDifferentCharactersOfString(String signal) {
-	Arrays.fill(visitedCharacters, false);
 	visitAllCharactersOfString(signal);
 	return countVisitedCharacters();
     }
@@ -56,6 +55,7 @@ public class SignalFinder {
     }
 
     private void visitAllCharactersOfString(String input) {
+	Arrays.fill(visitedCharacters, false);
 	char[] letters = input.toCharArray();
 	for (char letter : letters) {
 	    visitedCharacters[letter - 65] = true;
