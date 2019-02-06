@@ -1,5 +1,6 @@
 package eu.mapidev.basics.task.wega;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class SignalFinder {
 	for (String signal : signals) {
 	    Arrays.fill(visitedCharacters, false);
 	    visitAllCharactersOfString(signal);
-	    int visitedCharactersCounter = getVisitedCharactersCounter();
+	    int visitedCharactersCounter = countVisitedCharacters();
 	    if (visitedCharactersCounter > theLargestNumberOfDifferentCharacters) {
 		theMessageWithTheLargestNumberOfDifferentCharacters = signal;
 		theLargestNumberOfDifferentCharacters = visitedCharactersCounter;
@@ -40,10 +41,10 @@ public class SignalFinder {
 	return theMessageWithTheLargestNumberOfDifferentCharacters;
     }
 
-    private int getVisitedCharactersCounter() {
+    private int countVisitedCharacters() {
 	int counter = 0;
-	for (int i = 0; i < visitedCharacters.length; i++) {
-	    if (visitedCharacters[i]) {
+	for (boolean visitedCharacter : visitedCharacters) {
+	    if (visitedCharacter) {
 		counter++;
 	    }
 	}
@@ -51,9 +52,31 @@ public class SignalFinder {
     }
 
     private void visitAllCharactersOfString(String input) {
-	char[] characters = input.toCharArray();
-	for (int i = 0; i < characters.length; i++) {
-	    visitedCharacters[characters[i] - 65] = true;
+	char[] letters = input.toCharArray();
+	for (char letter : letters) {
+	    visitedCharacters[letter - 65] = true;
 	}
+    }
+
+    public List<String> findMessagesWithCharactersDistanceUpperLimit(int limit) {
+	List<String> messages = new ArrayList<>();
+	for (String signal : signals) {
+	    char[] letters = signal.toCharArray();
+
+	    int characterMinValue = 90;
+	    int characterMaxValue = 65;
+	    for (char character : letters) {
+		if (character > characterMaxValue) {
+		    characterMaxValue = character;
+		} else if (character < characterMinValue) {
+		    characterMinValue = character;
+		}
+	    }
+	    int distance = characterMaxValue - characterMinValue;
+	    if (distance <= limit) {
+		messages.add(signal);
+	    }
+	}
+	return messages;
     }
 }
