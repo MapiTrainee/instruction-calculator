@@ -23,7 +23,7 @@ public class SignalFinderTest {
     }
 
     @Test
-    public void shouldAllowToFindSecretMessageFromWega() {
+    public void shouldAllowToFindSecretMessageAfterJoiningTenthCharacterOfEveryFortyWords() {
 	String actualMessage = finder.readSecretMessage();
 	assertThat(actualMessage, is("NIECHCIMATURAPROSTABEDZIE"));
     }
