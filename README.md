@@ -11,3 +11,4 @@ All examples are independent!
 * [SimpleLinkedList](https://github.com/MapiTrainee/simple-java-tasks/tree/master/SimpleLinkedList)
 * [CaesarCipher](https://github.com/MapiTrainee/simple-java-tasks/tree/master/CaesarCipher)
 * [GreatestCommonFactor](https://github.com/MapiTrainee/simple-java-tasks/tree/master/GreatestCommonFactor)
+* [Wega](https://github.com/MapiTrainee/simple-java-tasks/tree/master/Wega)
