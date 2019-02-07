@@ -25,4 +25,4 @@ nbdist/
 nbactions.*
 
 ### FILES ###
-*.txt
+#*.txt
